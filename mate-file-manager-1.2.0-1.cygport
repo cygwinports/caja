@@ -1,0 +1,9 @@
+inherit mate
+
+
+PKG_NAMES="${PN} ${PN}-devel"
+PKG_HINTS="setup devel"
+mate_file_manager_CONTENTS="--exclude=gtk-doc etc/ usr/bin/ usr/lib/caja/ usr/lib/gir* usr/share/"
+mate_file_manager_devel_CONTENTS="usr/include/ usr/lib/lib* usr/lib/pkgconfig/ usr/share/gtk-doc/"
+
+CYGCONF_ARGS="--libexecdir=/usr/lib/caja"
