@@ -1,7 +1,7 @@
 inherit mate
 
 NAME="mate-file-manager"
-VERSION=1.6.2
+VERSION=1.6.3
 RELEASE=1
 CATEGORY="MATE"
 SUMMARY="MATE file manager (aka Caja)"
