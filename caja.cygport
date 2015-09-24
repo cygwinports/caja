@@ -1,12 +1,18 @@
 inherit mate
 
 NAME="caja"
-VERSION=1.8.2
+VERSION=1.10.3
 RELEASE=1
 CATEGORY="MATE"
 SUMMARY="MATE file manager"
 DESCRIPTION="MATE is a fork of the GNOME 2 desktop. It provides an intuitive
 and attractive desktop to Linux users using traditional metaphors."
+
+PATCH_URI="
+	http://pkgs.fedoraproject.org/cgit/caja.git/plain/caja_undo-fix-1.patch
+	http://pkgs.fedoraproject.org/cgit/caja.git/plain/caja_undo-fix-2.patch
+	http://pkgs.fedoraproject.org/cgit/caja.git/plain/caja_do-not-save-position-from-last-window.patch
+"
 
 PKG_NAMES="caja caja-devel"
 caja_REQUIRES="gvfs"
@@ -14,3 +20,16 @@ caja_OBSOLETES="mate-file-manager"
 caja_CONTENTS="--exclude=gtk-doc etc/ usr/bin/ usr/libexec/ usr/lib/gir* usr/share/"
 caja_devel_OBSOLETES="mate-file-manager-devel"
 caja_devel_CONTENTS="usr/include/ usr/lib/lib* usr/lib/pkgconfig/ usr/share/gtk-doc/"
+
+src_install() {
+	cd ${B}
+	cyginstall
+
+	desktop-file-install \
+		--dir=${D}/usr/share/applications \
+		--vendor=cygwin \
+		--remove-category=Core \
+		--remove-only-show-in=MATE \
+		--add-not-show-in=MATE \
+		${D}/usr/share/applications/caja-browser.desktop
+}
