@@ -1,0 +1,18 @@
+--- origsrc/caja-1.10.3/libcaja-private/caja-extensions.c	2015-07-20 10:11:21.000000000 -0500
++++ src/caja-1.10.3/libcaja-private/caja-extensions.c	2015-09-24 12:00:54.476477100 -0500
+@@ -195,7 +195,14 @@ caja_extension_register (gchar *filename
+     gboolean state = TRUE; // new extensions are enabled by default.
+     gchar *extname;
+     
+-    extname = g_strndup (filename, strlen(filename) - 3);
++    extname = g_strndup (filename, strlen(filename) - strlen("." G_MODULE_SUFFIX));
++#ifdef __CYGWIN__
++    if (g_str_has_prefix (extname, "cyg")) {
++      extname[0] = 'l';
++      extname[1] = 'i';
++      extname[2] = 'b';
++    }
++#endif
+     state = caja_extension_get_state (extname);
+ 
+     Extension *ext = extension_new (extname, state, module);

@@ -12,6 +12,7 @@ PATCH_URI="
 	http://pkgs.fedoraproject.org/cgit/caja.git/plain/caja_undo-fix-1.patch
 	http://pkgs.fedoraproject.org/cgit/caja.git/plain/caja_undo-fix-2.patch
 	http://pkgs.fedoraproject.org/cgit/caja.git/plain/caja_do-not-save-position-from-last-window.patch
+	1.10.3-cygwin-extensions.patch
 "
 
 PKG_NAMES="caja caja-devel"
