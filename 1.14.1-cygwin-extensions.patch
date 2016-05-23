@@ -1,0 +1,18 @@
+--- origsrc/caja-1.14.1/libcaja-private/caja-extensions.c	2016-04-06 09:52:24.000000000 -0500
++++ src/caja-1.14.1/libcaja-private/caja-extensions.c	2016-05-22 15:50:16.629014300 -0500
+@@ -202,7 +202,14 @@ caja_extension_register (gchar *filename
+     gboolean ext_python = FALSE;
+     gchar *ext_filename;
+ 
+-    ext_filename = g_strndup (filename, strlen(filename) - 3);
++    ext_filename = g_strndup (filename, strlen(filename) - strlen("." G_MODULE_SUFFIX));
++#ifdef __CYGWIN__
++    if (g_str_has_prefix (ext_filename, "cyg")) {
++      ext_filename[0] = 'l';
++      ext_filename[1] = 'i';
++      ext_filename[2] = 'b';
++    }
++#endif
+     ext_state = caja_extension_get_state (ext_filename);
+ 
+     if (g_str_has_suffix (filename, ".py")) {

@@ -1,7 +1,7 @@
 inherit mate
 
 NAME="caja"
-VERSION=1.10.3
+VERSION=1.14.1
 RELEASE=1
 CATEGORY="MATE"
 SUMMARY="MATE file manager"
@@ -9,10 +9,7 @@ DESCRIPTION="MATE is a fork of the GNOME 2 desktop. It provides an intuitive
 and attractive desktop to Linux users using traditional metaphors."
 
 PATCH_URI="
-	http://pkgs.fedoraproject.org/cgit/caja.git/plain/caja_undo-fix-1.patch
-	http://pkgs.fedoraproject.org/cgit/caja.git/plain/caja_undo-fix-2.patch
-	http://pkgs.fedoraproject.org/cgit/caja.git/plain/caja_do-not-save-position-from-last-window.patch
-	1.10.3-cygwin-extensions.patch
+	1.14.1-cygwin-extensions.patch
 "
 
 PKG_NAMES="caja caja-devel"
