@@ -1,7 +1,7 @@
 inherit mate
 
 NAME="caja"
-VERSION=1.14.2
+VERSION=1.16.2
 RELEASE=1
 CATEGORY="MATE"
 SUMMARY="MATE file manager"
@@ -19,6 +19,8 @@ caja_CONTENTS="--exclude=gtk-doc etc/ usr/bin/ usr/libexec/ usr/lib/gir* usr/sha
 caja_devel_OBSOLETES="mate-file-manager-devel"
 caja_devel_CONTENTS="usr/include/ usr/lib/lib* usr/lib/pkgconfig/ usr/share/gtk-doc/"
 
+CYGCONF_ARGS="--with-gtk=3.0"
+
 src_install() {
 	cd ${B}
 	cyginstall
@@ -30,4 +32,12 @@ src_install() {
 		--remove-only-show-in=MATE \
 		--add-not-show-in=MATE \
 		${D}/usr/share/applications/caja-browser.desktop
+
+	# Do not package the DBus service file because every FD.o-compliant
+	# file manager should provide org.freedesktop.FileManager1 but only
+	# each desktop's "native" one should run.  The supported solution
+	# is for none of them to register for DBus autostart, but leave the
+	# session manager to launch the service provider for the given desktop.
+	# See also: https://bugzilla.redhat.com/show_bug.cgi?id=1394927#c6
+	rm -f ${D}/usr/share/dbus-1/services/org.mate.freedesktop.FileManager1.service
 }
