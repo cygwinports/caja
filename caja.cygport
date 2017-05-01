@@ -1,7 +1,7 @@
 inherit mate
 
 NAME="caja"
-VERSION=1.16.2
+VERSION=1.18.2
 RELEASE=1
 CATEGORY="MATE"
 SUMMARY="MATE file manager"
@@ -15,11 +15,9 @@ PATCH_URI="
 PKG_NAMES="caja caja-devel"
 caja_REQUIRES="gvfs"
 caja_OBSOLETES="mate-file-manager"
-caja_CONTENTS="--exclude=gtk-doc etc/ usr/bin/ usr/libexec/ usr/lib/gir* usr/share/"
+caja_CONTENTS="--exclude=gtk-doc etc/ usr/bin/ usr/lib/gir* usr/share/"
 caja_devel_OBSOLETES="mate-file-manager-devel"
 caja_devel_CONTENTS="usr/include/ usr/lib/lib* usr/lib/pkgconfig/ usr/share/gtk-doc/"
-
-CYGCONF_ARGS="--with-gtk=3.0"
 
 src_install() {
 	cd ${B}
